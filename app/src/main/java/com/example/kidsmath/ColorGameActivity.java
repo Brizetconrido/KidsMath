@@ -1,0 +1,85 @@
+package com.example.kidsmath;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Random;
+
+public class ColorGameActivity extends AppCompatActivity {
+
+    String[] colors = {"ROJO", "VERDE", "AZUL", "AMARILLO"};
+    String currentColor;
+
+    TextView txtInstruction, txtResult;
+    Button btnTakePhoto;
+
+    ActivityResultLauncher<Intent> cameraLauncher;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_color_game);
+
+        txtInstruction = findViewById(R.id.txtColorInstruction);
+        txtResult = findViewById(R.id.txtColorResult);
+        btnTakePhoto = findViewById(R.id.btnTakeColorPhoto);
+
+        // Elige un color aleatorio
+        currentColor = colors[new Random().nextInt(colors.length)];
+        txtInstruction.setText("Busca algo " + currentColor + " y toma una foto");
+
+        // Launcher de cámara
+        cameraLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getData() != null && result.getData().getExtras() != null) {
+                        Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+                        validateColor(photo);
+                    }
+                }
+        );
+
+        btnTakePhoto.setOnClickListener(v -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            cameraLauncher.launch(intent);
+        });
+    }
+
+    private void validateColor(Bitmap bmp) {
+        if (bmp == null) {
+            txtResult.setText("Error al obtener foto");
+            return;
+        }
+
+        int pixel = bmp.getPixel(bmp.getWidth()/2, bmp.getHeight()/2);
+
+        int r = (pixel >> 16) & 0xff;
+        int g = (pixel >> 8) & 0xff;
+        int b = pixel & 0xff;
+
+        boolean ok = false;
+
+        switch (currentColor) {
+            case "ROJO": ok = r > g && r > b; break;
+            case "VERDE": ok = g > r && g > b; break;
+            case "AZUL": ok = b > r && b > g; break;
+            case "AMARILLO": ok = r > 150 && g > 150; break;
+        }
+
+        if (ok) {
+            txtResult.setText("🎉 ¡Correcto! Encontraste " + currentColor);
+        } else {
+            txtResult.setText("❌ Ese no parece ser " + currentColor);
+        }
+    }
+}
+

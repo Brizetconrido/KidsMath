@@ -70,12 +70,9 @@ public class MainMenuActivity extends AppCompatActivity {
         });
 
         btnMicrofono.setOnClickListener(v -> {
-            if (checkPermission(Manifest.permission.RECORD_AUDIO)) {
-                openMicrophone();
-            } else {
-                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 300);
-            }
+            startActivity(new Intent(this, RecorderActivity.class));
         });
+
     }
 
     private boolean checkPermission(String perm) {

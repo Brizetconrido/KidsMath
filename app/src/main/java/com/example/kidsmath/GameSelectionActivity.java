@@ -21,7 +21,8 @@ public class GameSelectionActivity extends AppCompatActivity {
         btnDivision = findViewById(R.id.btnDivision);
         btnContar = findViewById(R.id.btnContar);
         btnNumeroFaltante = findViewById(R.id.btnNumeroFaltante);
-
+        btnColorGame = findViewById(R.id.btnColorGame);
+        btnShapeGame = findViewById(R.id.btnShapeGame);
 
         btnSumas.setOnClickListener(v ->
                 startActivity(new Intent(this, SumGameActivity.class))
@@ -46,6 +47,15 @@ public class GameSelectionActivity extends AppCompatActivity {
         btnNumeroFaltante.setOnClickListener(v ->
                 startActivity(new Intent(this, MissingNumberActivity.class))
         );
+
+        btnColorGame.setOnClickListener(v ->
+                startActivity(new Intent(this, ColorGameActivity.class))
+        );
+
+        btnShapeGame.setOnClickListener(v ->
+                startActivity(new Intent(this, ShapeGameActivity.class))
+        );
+
     }
 }
 

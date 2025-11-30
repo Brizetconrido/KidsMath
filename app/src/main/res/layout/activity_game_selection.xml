@@ -73,5 +73,23 @@
             android:textSize="22sp"
             android:layout_marginTop="15dp"/>
 
+        <Button
+            android:id="@+id/btnColorGame"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Encuentra Colores"
+            android:backgroundTint="#FF00AA"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+    
+        <Button
+            android:id="@+id/btnShapeGame"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Encuentra Formas"
+            android:backgroundTint="#00BCD4"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
     </LinearLayout>
 </ScrollView>
