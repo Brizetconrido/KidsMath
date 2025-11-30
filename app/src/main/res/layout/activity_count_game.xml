@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    android:background="#E8F5E9">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/txtTitleCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuenta los Objetos"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="25dp" />
+
+    <!-- Área donde aparecerán los objetos (imágenes) -->
+    <LinearLayout
+        android:id="@+id/layoutImages"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="#C8E6C9"
+        android:layout_marginBottom="20dp">
+
+        <!-- IMÁGENES SE AGREGARÁN DESDE EL CÓDIGO JAVA -->
+    </LinearLayout>
+
+    <!-- Texto "¿Cuántos ves?" -->
+    <TextView
+        android:id="@+id/txtPreguntaCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Cuántos ves?"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#1B5E20"
+        android:layout_marginBottom="15dp" />
+
+    <!-- Caja de respuesta -->
+    <EditText
+        android:id="@+id/edtAnswerCount"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:hint="Tu respuesta"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:inputType="number"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="25dp" />
+
+    <!-- Botón Comprobar -->
+    <Button
+        android:id="@+id/btnCheckCount"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Comprobar"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:background="#43A047"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Resultado -->
+    <TextView
+        android:id="@+id/txtResultCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="22sp"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Botón siguiente -->
+    <Button
+        android:id="@+id/btnNextCount"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Siguiente"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:background="#1E88E5" />
+
+</LinearLayout>

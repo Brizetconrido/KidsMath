@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    android:background="#E3F2FD">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/txtTitleMulti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Juego de Multiplicación"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#1565C0"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Operación: A × B -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="25dp">
+
+        <TextView
+            android:id="@+id/txtNum1Multi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:padding="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="×"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/txtNum2Multi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:padding="10dp" />
+    </LinearLayout>
+
+    <!-- Campo de respuesta -->
+    <EditText
+        android:id="@+id/edtAnswerMulti"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="Tu respuesta"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="15dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="25dp" />
+
+    <!-- Botón comprobar -->
+    <Button
+        android:id="@+id/btnCheckMulti"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Comprobar"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:padding="15dp"
+        android:background="#1976D2"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Resultado -->
+    <TextView
+        android:id="@+id/txtResultMulti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="22sp"
+        android:textColor="#2E7D32"
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <!-- Botón siguiente -->
+    <Button
+        android:id="@+id/btnNextMulti"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Siguiente"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:padding="15dp"
+        android:background="#43A047"
+        android:layout_marginTop="30dp" />
+</LinearLayout>
