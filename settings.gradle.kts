@@ -11,8 +11,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)  // ← ARREGLA EL ERROR
     repositories {
         google()
         mavenCentral()
@@ -21,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "KidsMath"
 include(":app")
+

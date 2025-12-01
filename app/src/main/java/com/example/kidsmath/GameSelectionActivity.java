@@ -8,22 +8,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameSelectionActivity extends AppCompatActivity {
 
+    // BOTONES EXISTENTES
     Button btnSumas, btnRestas, btnMultiplicacion, btnDivision, btnContar, btnNumeroFaltante;
+
+    // NUEVOS BOTONES (los que faltaban)
+    Button btnColorGame, btnShapeGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_selection);
 
+        // CONEXIÓN CON XML
         btnSumas = findViewById(R.id.btnSumas);
         btnRestas = findViewById(R.id.btnRestas);
         btnMultiplicacion = findViewById(R.id.btnMultiplicacion);
         btnDivision = findViewById(R.id.btnDivision);
         btnContar = findViewById(R.id.btnContar);
         btnNumeroFaltante = findViewById(R.id.btnNumeroFaltante);
+
+        // CONEXIÓN BOTONES NUEVOS
         btnColorGame = findViewById(R.id.btnColorGame);
         btnShapeGame = findViewById(R.id.btnShapeGame);
 
+        // LISTENERS
         btnSumas.setOnClickListener(v ->
                 startActivity(new Intent(this, SumGameActivity.class))
         );
@@ -48,6 +56,7 @@ public class GameSelectionActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MissingNumberActivity.class))
         );
 
+        // NUEVOS MINIJUEGOS
         btnColorGame.setOnClickListener(v ->
                 startActivity(new Intent(this, ColorGameActivity.class))
         );
@@ -55,8 +64,5 @@ public class GameSelectionActivity extends AppCompatActivity {
         btnShapeGame.setOnClickListener(v ->
                 startActivity(new Intent(this, ShapeGameActivity.class))
         );
-
     }
 }
-
-
