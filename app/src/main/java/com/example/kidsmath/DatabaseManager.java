@@ -29,7 +29,6 @@ public class DatabaseManager {
         db.update("user", values, "id = 1", null);
     }
 
-
     // Agregar puntaje por juego
     public void addScore(String game, int points) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -45,7 +44,7 @@ public class DatabaseManager {
         db.execSQL("UPDATE user SET points_total = points_total + " + points + " WHERE id = 1");
     }
 
-    // Puntaje total global
+    // Puntaje total
     public int getTotalPoints() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
@@ -89,5 +88,11 @@ public class DatabaseManager {
         values.put("obtained", 1);
 
         db.update("rewards", values, "id = ?", new String[]{String.valueOf(rewardId)});
+    }
+
+    // 🔹 Nuevo: resetear SOLO la recompensa, sin borrar puntos
+    public void resetRewardStatus() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.execSQL("UPDATE rewards SET obtained = 0");
     }
 }

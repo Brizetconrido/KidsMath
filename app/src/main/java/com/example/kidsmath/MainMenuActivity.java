@@ -32,7 +32,7 @@ public class MainMenuActivity extends AppCompatActivity {
         btnRecompensas = findViewById(R.id.btnRecompensas);
         btnPerfil = findViewById(R.id.btnPerfil);
 
-        btnCamara = findViewById(R.id.btnCamara);
+
         btnMicrofono = findViewById(R.id.btnMicrofono);
 
         cameraLauncher = registerForActivityResult(
@@ -60,14 +60,6 @@ public class MainMenuActivity extends AppCompatActivity {
         btnPerfil.setOnClickListener(v ->
                 startActivity(new Intent(this, ProfileActivity.class))
         );
-
-        btnCamara.setOnClickListener(v -> {
-            if (checkPermission(Manifest.permission.CAMERA)) {
-                openCamera();
-            } else {
-                requestPermissions(new String[]{Manifest.permission.CAMERA}, 200);
-            }
-        });
 
         btnMicrofono.setOnClickListener(v -> {
             startActivity(new Intent(this, RecorderActivity.class));

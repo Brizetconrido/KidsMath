@@ -108,6 +108,18 @@
             android:padding="14dp"
             android:background="#43A047" />
 
+        <!-- ⬅ BOTÓN VOLVER (nuevo) -->
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="⟵ Volver"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FF5722"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp" />
+
     </LinearLayout>
 
 </ScrollView>

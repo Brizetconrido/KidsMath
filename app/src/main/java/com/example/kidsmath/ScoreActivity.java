@@ -1,17 +1,16 @@
 package com.example.kidsmath;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.kidsmath.api.ApiClient;
-
-import org.json.JSONObject;
 
 public class ScoreActivity extends AppCompatActivity {
 
-    TextView txtSuma, txtResta, txtMulti, txtDiv, txtTotal;
+    TextView txtSuma, txtResta, txtMulti, txtDiv, txtTotal, txtCount, txtMissing;
+    Button btnBackScore;
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,40 +22,39 @@ public class ScoreActivity extends AppCompatActivity {
         txtMulti = findViewById(R.id.txtScoreMulti);
         txtDiv = findViewById(R.id.txtScoreDiv);
         txtTotal = findViewById(R.id.txtTotalScore);
+        txtCount = findViewById(R.id.txtScoreCount);
+        txtMissing = findViewById(R.id.txtScoreMissing);
+        btnBackScore = findViewById(R.id.btnBackScore);
 
-        loadScoresFromAPI();
-    }
+        db = new DatabaseManager(this);
 
-    private void loadScoresFromAPI() {
+        loadScores();
 
-        ApiClient api = new ApiClient(this);
-
-        api.getScores(new ApiClient.ApiResponse() {
-            @Override
-            public void onSuccess(String response) {
-                runOnUiThread(() -> {
-                    try {
-                        JSONObject json = new JSONObject(response);
-
-                        txtSuma.setText("Puntaje: " + json.getInt("sumas"));
-                        txtResta.setText("Puntaje: " + json.getInt("restas"));
-                        txtMulti.setText("Puntaje: " + json.getInt("multiplicaciones"));
-                        txtDiv.setText("Puntaje: " + json.getInt("divisiones"));
-                        txtTotal.setText("Puntos Totales: " + json.getInt("total"));
-
-                    } catch (Exception e) {
-                        Toast.makeText(ScoreActivity.this, "Error JSON", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onError(String error) {
-                runOnUiThread(() ->
-                        Toast.makeText(ScoreActivity.this, "Error API: " + error, Toast.LENGTH_SHORT).show()
-                );
-            }
+        //  BOTÓN VOLVER
+        btnBackScore.setOnClickListener(v -> {
+            Intent i = new Intent(ScoreActivity.this, MainMenuActivity.class);
+            startActivity(i);
+            finish();
         });
     }
-}
 
+    private void loadScores() {
+
+        int sSum = db.getScoreByGame("sumas");
+        int sRes = db.getScoreByGame("restas");
+        int sMul = db.getScoreByGame("multiplicaciones");
+        int sDiv = db.getScoreByGame("divisiones");
+        int sCount = db.getScoreByGame("contar");
+        int sMissing = db.getScoreByGame("numero_faltante");
+
+        int total = db.getTotalPoints();
+
+        txtSuma.setText("Puntaje: " + sSum);
+        txtResta.setText("Puntaje: " + sRes);
+        txtMulti.setText("Puntaje: " + sMul);
+        txtDiv.setText("Puntaje: " + sDiv);
+        txtCount.setText("Puntaje: " + sCount);
+        txtMissing.setText("Puntaje: " + sMissing);
+        txtTotal.setText("Puntos Totales: " + total);
+    }
+}

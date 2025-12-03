@@ -1,76 +1,87 @@
 package com.example.kidsmath;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.kidsmath.api.ApiClient;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class RewardsActivity extends AppCompatActivity {
 
-    LinearLayout rewardsContainer;
-    TextView txtCurrentPoints;
+    TextView txtRewardMessage, txtRewardDescription, txtTotalPoints;
+    LinearLayout layoutRewardMessage;
+    Button btnBackReward, btnResetReward;
+
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rewards);
 
-        rewardsContainer = findViewById(R.id.rewardsContainer);
-        txtCurrentPoints = findViewById(R.id.txtCurrentPoints);
+        db = new DatabaseManager(this);
 
-        loadRewardsFromAPI();
-    }
+        // Conexión con XML
+        txtRewardMessage = findViewById(R.id.txtRewardMessage);
+        txtRewardDescription = findViewById(R.id.txtRewardDescription);
+        txtTotalPoints = findViewById(R.id.txtTotalPoints);
+        layoutRewardMessage = findViewById(R.id.layoutRewardMessage);
 
-    private void loadRewardsFromAPI() {
+        btnBackReward = findViewById(R.id.btnBackReward);
+        btnResetReward = findViewById(R.id.btnResetReward);
 
-        ApiClient api = new ApiClient(this);
+        showRewardMessage();
 
-        api.getScores(new ApiClient.ApiResponse() {
-            @Override
-            public void onSuccess(String response) {
-                runOnUiThread(() -> {
-                    try {
-                        JSONObject json = new JSONObject(response);
+        btnBackReward.setOnClickListener(v -> finish());
 
-                        // Mostrar puntos totales
-                        int total = json.getInt("total");
-                        txtCurrentPoints.setText("Puntos: " + total);
+        // 🔹 BOTÓN: borrar recompensa sin borrar puntos reales
+        btnResetReward.setOnClickListener(v -> {
 
-                        // Mostrar recompensas
-                        JSONArray rewards = json.getJSONArray("rewards");
+            // 1) Resetear solo recompensa
+            db.resetRewardStatus();
 
-                        rewardsContainer.removeAllViews();
+            // 2) Mostrar 0 visualmente (pero no borrar BD)
+            txtTotalPoints.setText("Puntos Totales: 0");
 
-                        for (int i = 0; i < rewards.length(); i++) {
-                            JSONObject rw = rewards.getJSONObject(i);
+            // 3) Ocultar el mensaje de recompensa
+            layoutRewardMessage.setVisibility(View.GONE);
 
-                            TextView txt = new TextView(RewardsActivity.this);
-                            txt.setText(rw.getString("name") + " - " + rw.getString("description"));
-                            txt.setTextSize(22f);
-                            txt.setPadding(25, 25, 25, 25);
+            txtRewardMessage.setText(
+                    "¡Sigue jugando! Necesitas 30 puntos para ganar una recompensa.\n\n" +
+                            "Pídele a tu mamá que revise esta pantalla cuando llegues a los 30."
+            );
 
-                            rewardsContainer.addView(txt);
-                        }
-
-                    } catch (Exception e) {
-                        Toast.makeText(RewardsActivity.this, "Error JSON", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onError(String error) {
-                runOnUiThread(() ->
-                        Toast.makeText(RewardsActivity.this, "Error API: " + error, Toast.LENGTH_SHORT).show()
-                );
-            }
+            txtRewardDescription.setText("");
         });
     }
+
+    private void showRewardMessage() {
+
+        int totalPoints = db.getTotalPoints();
+        txtTotalPoints.setText("Puntos Totales: " + totalPoints);
+
+        if (totalPoints < 30) {
+
+            layoutRewardMessage.setVisibility(View.GONE);
+
+            txtRewardMessage.setText(
+                    "¡Sigue jugando! Necesitas 30 puntos para ganar una recompensa.\n\n" +
+                            "Pídele a tu mamá que revise esta pantalla cuando llegues a los 30."
+            );
+
+        } else {
+
+            layoutRewardMessage.setVisibility(View.VISIBLE);
+
+            txtRewardMessage.setText("🎉 ¡FELICIDADES! 🎉");
+            txtRewardDescription.setText(
+                    "Has alcanzado " + totalPoints + " puntos.\n\n" +
+                            "⭐ HOY TU PREMIO ES: ¡Que te compren un dulce! ⭐\n\n" +
+                            "Muéstrale esto a tu mamá.\n" +
+                            "¡Lo estás haciendo excelente!"
+            );
+        }
+    }
 }
+

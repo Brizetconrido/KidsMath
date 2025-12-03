@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -20,9 +19,11 @@ public class ColorGameActivity extends AppCompatActivity {
     String currentColor;
 
     TextView txtInstruction, txtResult;
-    Button btnTakePhoto;
+    Button btnTakePhoto, btnVolver;
 
     ActivityResultLauncher<Intent> cameraLauncher;
+
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +33,15 @@ public class ColorGameActivity extends AppCompatActivity {
         txtInstruction = findViewById(R.id.txtColorInstruction);
         txtResult = findViewById(R.id.txtColorResult);
         btnTakePhoto = findViewById(R.id.btnTakeColorPhoto);
+        btnVolver = findViewById(R.id.btnVolver);
 
-        // Elige un color aleatorio
+        db = new DatabaseManager(this);
+
+        // Elegir color aleatorio
         currentColor = colors[new Random().nextInt(colors.length)];
         txtInstruction.setText("Busca algo " + currentColor + " y toma una foto");
 
-        // Launcher de cámara
+        // Cámara
         cameraLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
@@ -52,15 +56,23 @@ public class ColorGameActivity extends AppCompatActivity {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             cameraLauncher.launch(intent);
         });
+
+        // Botón volver
+        btnVolver.setOnClickListener(v -> {
+            Intent i = new Intent(ColorGameActivity.this, GameSelectionActivity.class);
+            startActivity(i);
+            finish();
+        });
     }
 
     private void validateColor(Bitmap bmp) {
+
         if (bmp == null) {
             txtResult.setText("Error al obtener foto");
             return;
         }
 
-        int pixel = bmp.getPixel(bmp.getWidth()/2, bmp.getHeight()/2);
+        int pixel = bmp.getPixel(bmp.getWidth() / 2, bmp.getHeight() / 2);
 
         int r = (pixel >> 16) & 0xff;
         int g = (pixel >> 8) & 0xff;
@@ -69,14 +81,26 @@ public class ColorGameActivity extends AppCompatActivity {
         boolean ok = false;
 
         switch (currentColor) {
-            case "ROJO": ok = r > g && r > b; break;
-            case "VERDE": ok = g > r && g > b; break;
-            case "AZUL": ok = b > r && b > g; break;
-            case "AMARILLO": ok = r > 150 && g > 150; break;
+            case "ROJO":
+                ok = r > g && r > b;
+                break;
+
+            case "VERDE":
+                ok = g > r && g > b;
+                break;
+
+            case "AZUL":
+                ok = b > r && b > g;
+                break;
+
+            case "AMARILLO":
+                ok = r > 150 && g > 150;
+                break;
         }
 
         if (ok) {
-            txtResult.setText("🎉 ¡Correcto! Encontraste " + currentColor);
+            txtResult.setText("¡Correcto! Encontraste " + currentColor + " +1 punto");
+            db.addScore("color", 1);
         } else {
             txtResult.setText("❌ Ese no parece ser " + currentColor);
         }

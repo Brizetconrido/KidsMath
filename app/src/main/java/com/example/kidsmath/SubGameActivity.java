@@ -1,6 +1,8 @@
 package com.example.kidsmath;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,63 +14,88 @@ import java.util.Random;
 
 public class SubGameActivity extends AppCompatActivity {
 
-    TextView txtNum1, txtNum2, txtResultSub;
+    TextView txtNum1Sub, txtNum2Sub, txtResultSub;
     EditText edtAnswerSub;
-    Button btnCheckSub, btnNextSub;
+    Button btnCheckSub, btnSiguiente, btnVolver;
 
     int a, b;
+
+    DatabaseManager db;
+    Handler handler = new Handler(); // para delay de 1 segundo
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_game);
 
-        // 🔹 Vincular con IDs reales del XML
-        txtNum1 = findViewById(R.id.txtNum1);
-        txtNum2 = findViewById(R.id.txtNum2);
+
+        txtNum1Sub = findViewById(R.id.txtNum1);
+        txtNum2Sub = findViewById(R.id.txtNum2);
+        txtResultSub = findViewById(R.id.txtResultSub);
         edtAnswerSub = findViewById(R.id.edtAnswerSub);
         btnCheckSub = findViewById(R.id.btnCheckSub);
-        txtResultSub = findViewById(R.id.txtResultSub);
-        btnNextSub = findViewById(R.id.btnNextSub);
+        btnSiguiente = findViewById(R.id.btnNextSub); // ← NUEVO
+        btnVolver = findViewById(R.id.btnVolver);
+
+        db = new DatabaseManager(this);
 
         generateSub();
 
-        // Botón Comprobar
+        // BOTÓN COMPROBAR RESPUESTA
         btnCheckSub.setOnClickListener(v -> {
-            String answer = edtAnswerSub.getText().toString();
 
-            if (answer.isEmpty()) {
-                Toast.makeText(this, "Ingrese una respuesta", Toast.LENGTH_SHORT).show();
+            String answerTxt = edtAnswerSub.getText().toString().trim();
+
+            if (answerTxt.isEmpty()) {
+                Toast.makeText(this, "Ingresa una respuesta", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            int result = a - b;
+            int answer = Integer.parseInt(answerTxt);
+            int correct = a - b;
 
-            if (Integer.parseInt(answer) == result) {
-                txtResultSub.setText("✔ Correcto!");
-                txtResultSub.setTextColor(0xFF2ECC71); // verde
+            if (answer == correct) {
+
+                txtResultSub.setText("✔ Correcto! +1 punto");
+                txtResultSub.setTextColor(0xFF2ECC71);
+
+                db.addScore("restas", 1);
+
+                handler.postDelayed(() -> {
+                    txtResultSub.setText("");
+                    edtAnswerSub.setText("");
+                    generateSub();
+                }, 900);
+
             } else {
-                txtResultSub.setText("✘ Incorrecto. Respuesta: " + result);
-                txtResultSub.setTextColor(0xFFE74C3C); // rojo
+
+                txtResultSub.setText("✘ Incorrecto");
+                txtResultSub.setTextColor(0xFFE74C3C);
             }
         });
 
-        // Botón Siguiente
-        btnNextSub.setOnClickListener(v -> {
+        //  BOTÓN SIGUIENTE (NO suma puntos)
+        btnSiguiente.setOnClickListener(v -> {
             generateSub();
+            edtAnswerSub.setText("");
             txtResultSub.setText("");
+            Toast.makeText(this, "Nuevo ejercicio ➤", Toast.LENGTH_SHORT).show();
+        });
+
+        // VOLVER AL MENÚ
+        btnVolver.setOnClickListener(v -> {
+            Intent i = new Intent(SubGameActivity.this, MainMenuActivity.class);
+            startActivity(i);
+            finish();
         });
     }
 
     private void generateSub() {
         Random r = new Random();
+        a = r.nextInt(10) + 5;
+        b = r.nextInt(10);
 
-        // Para evitar resultados negativos
-        a = r.nextInt(10) + 5;  // 5 a 14
-        b = r.nextInt(5);       // 0 a 4
-
-        txtNum1.setText(String.valueOf(a));
-        txtNum2.setText(String.valueOf(b));
-        edtAnswerSub.setText("");
+        txtNum1Sub.setText(String.valueOf(a));
+        txtNum2Sub.setText(String.valueOf(b));
     }
 }

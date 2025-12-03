@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:text="Encuentra Colores"
-            android:backgroundTint="#FF00AA"
+            android:backgroundTint="#4b2db9ff"
             android:textSize="22sp"
             android:layout_marginTop="15dp"/>
     
@@ -90,6 +90,18 @@
             android:backgroundTint="#00BCD4"
             android:textSize="22sp"
             android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="⟵ Volver"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#FF5722"
+            android:layout_marginTop="25dp"/>
+
 
     </LinearLayout>
 </ScrollView>

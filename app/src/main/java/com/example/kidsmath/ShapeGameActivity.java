@@ -20,9 +20,11 @@ public class ShapeGameActivity extends AppCompatActivity {
     String currentShape;
 
     TextView txtInstruction, txtResult;
-    Button btnTakePhoto;
+    Button btnTakePhoto, btnVolver;
 
     ActivityResultLauncher<Intent> cameraLauncher;
+
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class ShapeGameActivity extends AppCompatActivity {
         txtInstruction = findViewById(R.id.txtShapeInstruction);
         txtResult = findViewById(R.id.txtShapeResult);
         btnTakePhoto = findViewById(R.id.btnTakeShapePhoto);
+        btnVolver = findViewById(R.id.btnVolver);
+
+        db = new DatabaseManager(this);
 
         // Elegir forma aleatoria
         currentShape = shapes[new Random().nextInt(shapes.length)];
@@ -52,15 +57,15 @@ public class ShapeGameActivity extends AppCompatActivity {
             Intent cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             cameraLauncher.launch(cam);
         });
+
+        //  BOTÓN VOLVER
+        btnVolver.setOnClickListener(v -> {
+            Intent i = new Intent(ShapeGameActivity.this, MainMenuActivity.class);
+            startActivity(i);
+            finish();
+        });
     }
 
-
-    /***
-     * Algoritmo simple
-     * - Círculo → muchos bordes curvos
-     * - Cuadrado → 4 esquinas claras
-     * - Triángulo → 3 esquinas
-     */
     private void detectShape(Bitmap bmp) {
         if (bmp == null) {
             txtResult.setText("Error al leer la foto");
@@ -72,7 +77,6 @@ public class ShapeGameActivity extends AppCompatActivity {
 
         int corners = 0;
 
-        // Detectar "cambios fuertes de color" (bordes)
         for (int y = 1; y < height - 1; y++) {
             for (int x = 1; x < width - 1; x++) {
 
@@ -91,14 +95,16 @@ public class ShapeGameActivity extends AppCompatActivity {
 
         String detected;
 
-        if (corners < 250) detected = "CÍRCULO";       // suave
-        else if (corners < 600) detected = "TRIÁNGULO"; // algunas esquinas
-        else detected = "CUADRADO";                    // bordes fuertes
+        if (corners < 250) detected = "CÍRCULO";
+        else if (corners < 600) detected = "TRIÁNGULO";
+        else detected = "CUADRADO";
 
         if (detected.equals(currentShape)) {
-            txtResult.setText("🎉 ¡Correcto! Encontraste un " + currentShape);
+            txtResult.setText("🎉 ¡Correcto! Encontraste un " + currentShape + " +1 punto");
+            db.addScore("forma", 1);
         } else {
             txtResult.setText("❌ Detecté un " + detected + ", no un " + currentShape);
         }
     }
 }
+

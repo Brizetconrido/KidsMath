@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,31 +21,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.kidsmath.api.ApiClient;
-
 public class ProfileActivity extends AppCompatActivity {
 
     EditText edtNombre, edtEdad;
     TextView txtPuntos;
-    Button btnSaveProfile, btnChangePhoto;
+    Button btnSaveProfile, btnChangePhoto, btnVolver;
     ImageView imgProfile;
 
     private static final int CAMERA_PERMISSION_CODE = 100;
 
-    ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
-                    imgProfile.setImageBitmap(photo);
-                }
-            });
+    DatabaseManager db;
+    Bitmap currentPhoto = null;
+
+    ActivityResultLauncher<Intent> cameraLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == Activity.RESULT_OK &&
+                                result.getData() != null &&
+                                result.getData().getExtras() != null) {
+
+                            Bitmap photo = (Bitmap) result.getData().getExtras().get("data");
+                            currentPhoto = photo;
+                            imgProfile.setImageBitmap(photo);
+                        }
+                    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        db = new DatabaseManager(this);
 
         edtNombre = findViewById(R.id.edtNombre);
         edtEdad = findViewById(R.id.edtEdad);
@@ -52,9 +60,9 @@ public class ProfileActivity extends AppCompatActivity {
         btnSaveProfile = findViewById(R.id.btnSaveProfile);
         btnChangePhoto = findViewById(R.id.btnChangePhoto);
         imgProfile = findViewById(R.id.imgProfile);
+        btnVolver = findViewById(R.id.btnVolver); // ← NUEVO
 
-        ApiClient api = new ApiClient(this);
-
+        loadUserData();
 
         btnChangePhoto.setOnClickListener(v -> {
             if (checkCameraPermission()) {
@@ -65,7 +73,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         btnSaveProfile.setOnClickListener(v -> {
-
             String nombre = edtNombre.getText().toString().trim();
             String edadTxt = edtEdad.getText().toString().trim();
 
@@ -79,30 +86,34 @@ public class ProfileActivity extends AppCompatActivity {
                 return;
             }
 
-            int puntos = 100;   // puedes cambiarlo cuando hagas que los juegos sumen puntos
-            String juego = "perfil";
+            int edad = Integer.parseInt(edadTxt);
 
-            api.sendScore(nombre, puntos, juego, new ApiClient.ApiResponse() {
-                @Override
-                public void onSuccess(String response) {
-                    Toast.makeText(ProfileActivity.this,
-                            "Perfil enviado correctamente a la API",
-                            Toast.LENGTH_SHORT).show();
+            db.updateUser(nombre, edad, "avatar1");
 
-                    txtPuntos.setText("Puntos Totales: " + puntos);
-                }
+            Toast.makeText(this, "Perfil guardado correctamente", Toast.LENGTH_SHORT).show();
+        });
 
-                @Override
-                public void onError(String error) {
-                    Toast.makeText(ProfileActivity.this,
-                            "ERROR API: " + error,
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-
+        // ← BOTÓN VOLVER AL MENÚ PRINCIPAL
+        btnVolver.setOnClickListener(v -> {
+            Intent i = new Intent(ProfileActivity.this, MainMenuActivity.class);
+            startActivity(i);
+            finish();
         });
     }
 
+    private void loadUserData() {
+        Cursor c = db.getUser();
+
+        if (c.moveToFirst()) {
+            String name = c.getString(c.getColumnIndexOrThrow("name"));
+            int age = c.getInt(c.getColumnIndexOrThrow("age"));
+            int points = c.getInt(c.getColumnIndexOrThrow("points_total"));
+
+            edtNombre.setText(name);
+            edtEdad.setText(String.valueOf(age));
+            txtPuntos.setText("Puntos Totales: " + points);
+        }
+    }
 
     private boolean checkCameraPermission() {
         return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -110,22 +121,26 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void requestCameraPermission() {
-        ActivityCompat.requestPermissions(this,
+        ActivityCompat.requestPermissions(
+                this,
                 new String[]{Manifest.permission.CAMERA},
-                CAMERA_PERMISSION_CODE);
+                CAMERA_PERMISSION_CODE
+        );
     }
 
-    // Resultado del permiso
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
+
         if (requestCode == CAMERA_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openCamera();
             } else {
                 Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show();
             }
         }
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -134,4 +149,3 @@ public class ProfileActivity extends AppCompatActivity {
         cameraLauncher.launch(cameraIntent);
     }
 }
-

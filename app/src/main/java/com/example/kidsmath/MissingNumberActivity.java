@@ -1,6 +1,8 @@
 package com.example.kidsmath;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,29 +16,35 @@ public class MissingNumberActivity extends AppCompatActivity {
 
     TextView txtNumA, txtMissingSlot, txtNumC, txtNumD, txtResultMissing;
     EditText edtAnswerMissing;
-    Button btnCheckMissing, btnNextMissing;
+    Button btnCheckMissing, btnNextMissing, btnVolver;
 
     int missingNumber;
+
+    DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_missing_number);
 
+        db = new DatabaseManager(this);
 
+        // IDs EXACTOS DEL XML
         txtNumA = findViewById(R.id.txtNumA);
         txtMissingSlot = findViewById(R.id.txtMissingSlot);
         txtNumC = findViewById(R.id.txtNumC);
         txtNumD = findViewById(R.id.txtNumD);
-
-        edtAnswerMissing = findViewById(R.id.edtAnswerMissing);
         txtResultMissing = findViewById(R.id.txtResultMissing);
 
+        edtAnswerMissing = findViewById(R.id.edtAnswerMissing);
+
         btnCheckMissing = findViewById(R.id.btnCheckMissing);
-        btnNextMissing = findViewById(R.id.btnNextMissing);
+        btnNextMissing = findViewById(R.id.btnNextMissing);  // ← NUEVO
+        btnVolver = findViewById(R.id.btnVolver);
 
         generateSequence();
 
+        // ➤ BOTÓN COMPROBAR
         btnCheckMissing.setOnClickListener(v -> {
 
             String answerTxt = edtAnswerMissing.getText().toString().trim();
@@ -49,32 +57,50 @@ public class MissingNumberActivity extends AppCompatActivity {
             int answer = Integer.parseInt(answerTxt);
 
             if (answer == missingNumber) {
-                txtResultMissing.setText("¡Correcto!");
+
+                txtResultMissing.setText("¡Correcto +1 punto!");
                 txtResultMissing.setTextColor(0xFF2E7D32);
+
+                db.addScore("numero_faltante", 1);
+
+                new Handler().postDelayed(() -> {
+                    generateSequence();
+                    txtResultMissing.setText("");
+                    edtAnswerMissing.setText("");
+                }, 900);
+
             } else {
                 txtResultMissing.setText("Incorrecto");
                 txtResultMissing.setTextColor(0xFFC62828);
             }
         });
 
+        //  BOTÓN SIGUIENTE (SIN SUMAR PUNTOS)
         btnNextMissing.setOnClickListener(v -> {
             generateSequence();
             txtResultMissing.setText("");
             edtAnswerMissing.setText("");
+            Toast.makeText(this, "Nuevo ejercicio ➤", Toast.LENGTH_SHORT).show();
+        });
+
+        //  BOTÓN VOLVER
+        btnVolver.setOnClickListener(v -> {
+            Intent i = new Intent(MissingNumberActivity.this, MainMenuActivity.class);
+            startActivity(i);
+            finish();
         });
     }
 
     private void generateSequence() {
         Random random = new Random();
 
-        int start = random.nextInt(10); // Número inicial
-        int step = random.nextInt(3) + 1; // Paso (1–3)
+        int start = random.nextInt(10);
+        int step = random.nextInt(3) + 1;
 
-        // A - ? - C - D (ejemplo: 2 - ? - 6 - 8)
         int numA = start;
         missingNumber = start + step;
-        int numC = start + step * 2;
-        int numD = start + step * 3;
+        int numC = start + (step * 2);
+        int numD = start + (step * 3);
 
         txtNumA.setText(String.valueOf(numA));
         txtMissingSlot.setText("?");

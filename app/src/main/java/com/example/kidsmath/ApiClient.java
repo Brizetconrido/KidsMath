@@ -13,14 +13,15 @@ import java.util.Map;
 
 public class ApiClient {
 
-    //  Cambia ESTA IP por tu PC
-    private static final String BASE_URL = "http://10.0.2.2/api.php";
+    // URL correcta
+    private static final String BASE_URL = "http://10.0.2.2/api/api.php";
 
     private final RequestQueue queue;
 
     public ApiClient(Context context) {
         queue = Volley.newRequestQueue(context);
     }
+
 
     public void sendScore(String name, int points, String game, ApiResponse listener) {
 
@@ -40,22 +41,17 @@ public class ApiClient {
             }
         };
 
-        // Evitar cuelgues
-        request.setRetryPolicy(new DefaultRetryPolicy(
-                5000, 3, 1f
-        ));
-
+        request.setRetryPolicy(new DefaultRetryPolicy(5000, 3, 1f));
         queue.add(request);
     }
 
+    // Obtener puntajes
     public void getScores(ApiResponse listener) {
-
         String url = BASE_URL + "?action=get_scores";
 
-        StringRequest request =
-                new StringRequest(Request.Method.GET, url,
-                        listener::onSuccess,
-                        error -> listener.onError(error.toString()));
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+                listener::onSuccess,
+                error -> listener.onError(error.toString()));
 
         queue.add(request);
     }
@@ -83,11 +79,9 @@ public class ApiClient {
     public void getProfile(ApiResponse listener) {
         String url = BASE_URL + "?action=get_profile";
 
-        StringRequest request = new StringRequest(
-                Request.Method.GET, url,
+        StringRequest request = new StringRequest(Request.Method.GET, url,
                 listener::onSuccess,
-                error -> listener.onError(error.toString())
-        );
+                error -> listener.onError(error.toString()));
 
         queue.add(request);
     }
@@ -95,11 +89,9 @@ public class ApiClient {
     public void getRewards(ApiResponse listener) {
         String url = BASE_URL + "?action=get_rewards";
 
-        StringRequest request = new StringRequest(
-                Request.Method.GET, url,
+        StringRequest request = new StringRequest(Request.Method.GET, url,
                 listener::onSuccess,
-                error -> listener.onError(error.toString())
-        );
+                error -> listener.onError(error.toString()));
 
         queue.add(request);
     }
@@ -109,4 +101,3 @@ public class ApiClient {
         void onError(String error);
     }
 }
-
