@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    android:background="#F3E5F5">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/txtTitleMissing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número Faltante"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#6A1B9A"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Secuencia de números -->
+    <LinearLayout
+        android:id="@+id/layoutSequence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_marginBottom="25dp">
+
+        <!-- Número 1 -->
+        <TextView
+            android:id="@+id/txtNumA"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="2"
+            android:gravity="center"
+            android:textSize="36sp"
+            android:textColor="#4A148C"
+            android:textStyle="bold" />
+
+        <!-- Separador -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="32sp"
+            android:textColor="#4A148C"
+            android:padding="10dp" />
+
+        <!-- Número faltante -->
+        <TextView
+            android:id="@+id/txtMissingSlot"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="?"
+            android:gravity="center"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textColor="#8E24AA"
+            android:background="#E1BEE7" />
+
+        <!-- Separador -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="32sp"
+            android:textColor="#4A148C"
+            android:padding="10dp" />
+
+        <!-- Número 3 -->
+        <TextView
+            android:id="@+id/txtNumC"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="6"
+            android:gravity="center"
+            android:textSize="36sp"
+            android:textColor="#4A148C"
+            android:textStyle="bold" />
+
+        <!-- Separador -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="32sp"
+            android:textColor="#4A148C"
+            android:padding="10dp" />
+
+        <!-- Número 4 -->
+        <TextView
+            android:id="@+id/txtNumD"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:text="8"
+            android:gravity="center"
+            android:textSize="36sp"
+            android:textColor="#4A148C"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Pregunta -->
+    <TextView
+        android:id="@+id/txtPreguntaMissing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Qué número falta?"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#6A1B9A"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Caja de respuesta -->
+    <EditText
+        android:id="@+id/edtAnswerMissing"
+        android:layout_width="200dp"
+        android:layout_height="65dp"
+        android:hint="Tu respuesta"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:inputType="number"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="25dp" />
+
+    <!-- Botón comprobar -->
+    <Button
+        android:id="@+id/btnCheckMissing"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:text="Comprobar"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="#8E24AA"
+        android:padding="15dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Resultado -->
+    <TextView
+        android:id="@+id/txtResultMissing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="22sp"
+        android:textColor="#2E7D32"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Botón siguiente -->
+    <Button
+        android:id="@+id/btnNextMissing"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:text="Siguiente"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="#5E35B1"
+        android:padding="15dp" />
+
+    <!-- ⬅ BOTÓN VOLVER (nuevo) -->
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:text="⟵ Volver"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

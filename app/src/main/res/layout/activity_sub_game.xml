@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center_horizontal"
+    android:background="#FFF4CC">
+
+    <!-- Título del juego -->
+    <TextView
+        android:id="@+id/txtTitleSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Juego de Restas"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#D35400"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Operación de resta -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="25dp">
+
+        <TextView
+            android:id="@+id/txtNum1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/txtNum2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:padding="10dp"/>
+    </LinearLayout>
+
+    <!-- Campo para ingresar respuesta -->
+    <EditText
+        android:id="@+id/edtAnswerSub"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="Tu respuesta"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:inputType="number"
+        android:padding="15dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="25dp" />
+
+    <!-- Botón comprobar -->
+    <Button
+        android:id="@+id/btnCheckSub"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Comprobar"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:padding="15dp"
+        android:background="#FF9800"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Resultado -->
+    <TextView
+        android:id="@+id/txtResultSub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="22sp"
+        android:textColor="#27AE60"
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <!-- Botón siguiente -->
+    <Button
+        android:id="@+id/btnNextSub"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="Siguiente"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:padding="15dp"
+        android:background="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="30dp" />
+
+    <!-- ⬅ BOTÓN VOLVER (nuevo) -->
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:text="⟵ Volver"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>
+

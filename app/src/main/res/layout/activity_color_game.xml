@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#FFF0F5">
+
+    <TextView
+        android:id="@+id/txtColorInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Busca algo ROJO y toma una foto"
+        android:textSize="28sp"
+        android:textColor="#E91E63"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp"/>
+
+    <Button
+        android:id="@+id/btnTakeColorPhoto"
+        android:layout_width="260dp"
+        android:layout_height="100dp"
+        android:text="📸 Tomar Foto"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:backgroundTint="#E91E63"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/txtColorResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="26sp"
+        android:textColor="#4CAF50"
+        android:layout_marginTop="40dp"
+        android:gravity="center"/>
+
+    <!-- ⬅ BOTÓN VOLVER (nuevo) -->
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:text="⟵ Volver"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp" />
+</LinearLayout>

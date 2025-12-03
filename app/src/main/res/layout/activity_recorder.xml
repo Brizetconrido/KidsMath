@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:background="#FFF3E0">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grabadora de Voz"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#E65100"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- Botón Grabar -->
+    <Button
+        android:id="@+id/btnRecord"
+        android:layout_width="260dp"
+        android:layout_height="90dp"
+        android:text="🎤 GRABAR"
+        android:backgroundTint="#FB8C00"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+    <!-- Botón Reproducir última grabación -->
+    <Button
+        android:id="@+id/btnPlay"
+        android:layout_width="260dp"
+        android:layout_height="90dp"
+        android:text="▶ REPRODUCIR"
+        android:backgroundTint="#43A047"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- Lista de grabaciones -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grabaciones Guardadas:"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#E65100"
+        android:layout_marginBottom="10dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#FFE0B2">
+
+        <LinearLayout
+            android:id="@+id/listRecordings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

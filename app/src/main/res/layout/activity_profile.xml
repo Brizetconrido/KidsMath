@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E3F2FD">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/txtTitleProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mi Perfil"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="#0D47A1"
+            android:layout_marginBottom="25dp" />
+
+        <!-- Imagen de perfil -->
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@android:drawable/ic_menu_camera"
+            android:background="#FFFFFF"
+            android:padding="10dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:backgroundTint="#BBDEFB" />
+
+        <!-- Botón cambiar foto -->
+        <Button
+            android:id="@+id/btnChangePhoto"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Cambiar Foto"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:background="#1E88E5"
+            android:padding="12dp"
+            android:layout_marginBottom="30dp" />
+
+        <!-- Campo Nombre -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre:"
+            android:textSize="20sp"
+            android:textColor="#0D47A1"
+            android:layout_marginBottom="5dp" />
+
+        <EditText
+            android:id="@+id/edtNombre"
+            android:layout_width="280dp"
+            android:layout_height="55dp"
+            android:hint="Escribe tu nombre"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Campo Edad -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edad:"
+            android:textSize="20sp"
+            android:textColor="#0D47A1"
+            android:layout_marginBottom="5dp" />
+
+        <EditText
+            android:id="@+id/edtEdad"
+            android:layout_width="280dp"
+            android:layout_height="55dp"
+            android:hint="Edad (4 - 10)"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:inputType="number"
+            android:background="@android:drawable/edit_text"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Puntos -->
+        <TextView
+            android:id="@+id/txtPuntos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntos Totales: 0"
+            android:textSize="22sp"
+            android:textColor="#1B5E20"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp" />
+
+        <!-- Botón guardar -->
+        <Button
+            android:id="@+id/btnSaveProfile"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:text="Guardar Cambios"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:padding="14dp"
+            android:background="#43A047" />
+
+        <!-- ⬅ BOTÓN VOLVER (nuevo) -->
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="⟵ Volver"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FF5722"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+</ScrollView>

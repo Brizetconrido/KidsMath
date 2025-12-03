@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF8E1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <!-- 🎉 TÍTULO -->
+        <TextView
+            android:id="@+id/txtRewardTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Tus Recompensas!"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#F57C00"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"/>
+
+        <!-- ⭐ PUNTOS TOTALES -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="18dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#FFECB3"
+            android:elevation="5dp"
+            android:layout_marginBottom="25dp"
+            android:backgroundTint="#FFE082">
+
+            <TextView
+                android:id="@+id/txtTotalPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntos Totales: 0"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#E65100"/>
+        </LinearLayout>
+
+        <!-- 🎁 MENSAJE DE RECOMPENSA -->
+        <LinearLayout
+            android:id="@+id/layoutRewardMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#C8E6C9"
+            android:elevation="6dp"
+            android:visibility="gone"
+            android:backgroundTint="#A5D6A7">
+
+            <TextView
+                android:id="@+id/txtRewardMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¡Felicidades!"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#2E7D32"
+                android:gravity="center"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/txtRewardDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Has llegado a 30 puntos, ¡pídele a tu mamá tu premio!"
+                android:textSize="20sp"
+                android:textColor="#1B5E20"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <!-- 🟢 BOTÓN VOLVER -->
+        <Button
+            android:id="@+id/btnBackReward"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:text="⟵ Volver"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:backgroundTint="#FF5722"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="35dp"/>
+
+        <Button
+            android:id="@+id/btnResetReward"
+            android:layout_width="250dp"
+            android:layout_height="70dp"
+            android:text="🧹 Borrar Recompensa"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#9C27B0"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+</ScrollView>

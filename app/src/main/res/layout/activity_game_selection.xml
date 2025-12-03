@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eafb00ae">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecciona un Juego"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btnSumas"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Sumas"
+            android:backgroundTint="#FFEB3B"
+            android:textSize="22sp"
+            android:layout_marginTop="25dp"/>
+
+        <Button
+            android:id="@+id/btnRestas"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Restas"
+            android:backgroundTint="#FF5722"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnMultiplicacion"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Multiplicación"
+            android:backgroundTint="#4CAF50"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnDivision"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="División"
+            android:backgroundTint="#FF9800"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnContar"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Contar Objetos"
+            android:backgroundTint="#9C27B0"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnNumeroFaltante"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Número Faltante"
+            android:backgroundTint="#03A9F4"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnColorGame"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Encuentra Colores"
+            android:backgroundTint="#4b2db9ff"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+    
+        <Button
+            android:id="@+id/btnShapeGame"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Encuentra Formas"
+            android:backgroundTint="#00BCD4"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"/>
+
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="⟵ Volver"
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#FF5722"
+            android:layout_marginTop="25dp"/>
+
+
+    </LinearLayout>
+</ScrollView>

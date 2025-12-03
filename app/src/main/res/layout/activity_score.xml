@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8F5E9">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/txtScoreTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntajes"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#2E7D32"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp" />
+
+        <!-- Puntos Totales -->
+        <TextView
+            android:id="@+id/txtTotalScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntos Totales: 0"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#1B5E20"
+            android:layout_gravity="center"
+            android:paddingBottom="24dp" />
+
+        <!-- ======================= TARJETAS DE JUEGOS ======================= -->
+
+        <!-- Sumas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#FFECB3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="➕ Sumas"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#E65100" />
+
+            <TextView
+                android:id="@+id/txtScoreSum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntaje: 0"
+                android:textSize="18sp"
+                android:textColor="#BF360C"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- Restas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#FFCDD2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="➖ Restas"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#C62828" />
+
+            <TextView
+                android:id="@+id/txtScoreSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntaje: 0"
+                android:textSize="18sp"
+                android:textColor="#8E0000"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- Multiplicaciones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#C5CAE9">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✖ Multiplicaciones"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#283593" />
+
+            <TextView
+                android:id="@+id/txtScoreMulti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntaje: 0"
+                android:textSize="18sp"
+                android:textColor="#1A237E"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- Divisiones -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#B2EBF2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="➗ Divisiones"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#006064" />
+
+            <TextView
+                android:id="@+id/txtScoreDiv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntaje: 0"
+                android:textSize="18sp"
+                android:textColor="#004D40"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- Contar Objetos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#DCEDC8">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔢 Contar"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#558B2F" />
+
+            <TextView
+                android:id="@+id/txtScoreCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntaje: 0"
+                android:textSize="18sp"
+                android:textColor="#33691E"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- Número faltante -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="#FFFFFF"
+            android:elevation="6dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#F8BBD0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="❓ Número faltante"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#AD1457" />
+
+            <TextView
+                android:id="@+id/txtScoreMissing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Puntaje: 0"
+                android:textSize="18sp"
+                android:textColor="#880E4F"
+                android:paddingTop="6dp" />
+        </LinearLayout>
+
+        <!-- Botón Volver -->
+        <Button
+            android:id="@+id/btnBackScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:paddingVertical="12dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
+</ScrollView>
