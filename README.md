@@ -1,6 +1,6 @@
 #  KidsMath – Aplicación de Matemáticas para Niños
 
-KidsMath es una aplicación educativa desarrollada en Android Studio diseñada para que los niños de 4 a 10 años aprendan matemáticas de forma divertida.  
+KidsMath es una aplicación educativa desarrollada en Android Studio diseñada para que los niños de 4 a 7 años aprendan matemáticas de forma divertida.  
 Incluye juegos, puntajes, recompensas, perfil del niño y uso de hardware como cámara y micrófono.
 
 ---
@@ -85,24 +85,22 @@ Agrega aquí tus imágenes (puedes subirlas a `/assets` o usar imágenes del rep
 
 1. Clonar el repositorio:
 2. git clone https://github.com/Brizetconrido/KidsMath.git
-3. 
-2. Abrir en Android Studio  
-3. Ejecutar desde un dispositivo o emulador  
+3.  Abrir en Android Studio  
+4. Ejecutar desde un dispositivo o emulador  
 
 ---
 
 ##  Estado del Proyecto
-✔ Proyecto completado  
-✔ Funciones implementadas  
-✔ Base de datos operativa  
-✔ Recompensas funcionando  
-✔ Rama `development` fusionada en `main`  
+ Proyecto completado  
+Funciones implementadas  
+Base de datos operativa  
+Recompensas funcionando  
+Rama `development` fusionada en `main`  
 
 ---
 
-## 👨‍💻Autor
+## Autor
 **Brizet Conrido**  
 Proyecto académico – Aplicación KidsMath  
-(Universidad / Curso)
 
 
